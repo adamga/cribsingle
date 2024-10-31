@@ -8,6 +8,9 @@ class CribbageBoard {
     this.board = new PIXI.Graphics();
     this.app.stage.addChild(this.board);
 
+    this.cardSprites = [];
+    this.selectedCard = null;
+
     this.drawBoard();
   }
 
@@ -26,8 +29,42 @@ class CribbageBoard {
     }
   }
 
+  createCardSprite(card) {
+    const texture = PIXI.Texture.from(`images/${card.rank}_of_${card.suit}.png`);
+    const sprite = new PIXI.Sprite(texture);
+    sprite.interactive = true;
+    sprite.buttonMode = true;
+    sprite.on('pointerdown', () => this.onCardClick(sprite));
+    this.cardSprites.push(sprite);
+    this.app.stage.addChild(sprite);
+  }
+
+  onCardClick(sprite) {
+    if (this.selectedCard) {
+      this.selectedCard.tint = 0xFFFFFF;
+    }
+    this.selectedCard = sprite;
+    this.selectedCard.tint = 0xFF0000;
+  }
+
   updateBoard(playerScore, aiScore) {
     // Update the board based on the player and AI scores
+  }
+
+  animateShufflingDeck() {
+    // Implement the animation for shuffling the deck using PixiJS
+  }
+
+  animateDrawingStarterCard() {
+    // Implement the animation for drawing the starter card using PixiJS
+  }
+
+  animateScoreUpdates() {
+    // Implement visual effects for score updates using PixiJS
+  }
+
+  animateWinningLosingGame() {
+    // Implement visual effects for winning/losing the game using PixiJS
   }
 }
 

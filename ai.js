@@ -1,6 +1,7 @@
 class AIOpponent {
   constructor(game) {
     this.game = game;
+    this.playedCards = [];
   }
 
   makeMove() {
@@ -13,6 +14,14 @@ class AIOpponent {
 
   chooseCribCards(hand) {
     // Implement the logic for the AI opponent to choose cards for the crib
+  }
+
+  trackPlayedCard(card) {
+    this.playedCards.push(card);
+  }
+
+  getPlayedCards() {
+    return this.playedCards;
   }
 }
 
