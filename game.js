@@ -1,3 +1,5 @@
+const PIXI = require('pixi.js');
+
 class CribbageGame {
   constructor() {
     this.deck = this.createDeck();
@@ -8,6 +10,9 @@ class CribbageGame {
     this.starterCard = null;
     this.playerScore = 0;
     this.aiScore = 0;
+    this.app = new PIXI.Application({ width: 800, height: 600 });
+    document.body.appendChild(this.app.view);
+    this.cardSprites = [];
   }
 
   createDeck() {
@@ -34,10 +39,12 @@ class CribbageGame {
   dealHands() {
     this.playerHand = this.deck.splice(0, 6);
     this.aiHand = this.deck.splice(0, 6);
+    this.animateDealingCards();
   }
 
   selectStarterCard() {
     this.starterCard = this.deck.pop();
+    this.animateStarterCard();
   }
 
   playRound() {
@@ -56,6 +63,26 @@ class CribbageGame {
     } else {
       return null;
     }
+  }
+
+  animateDealingCards() {
+    // Implement the animation for dealing cards using PixiJS
+  }
+
+  animateStarterCard() {
+    // Implement the animation for drawing the starter card using PixiJS
+  }
+
+  updateGameState() {
+    // Implement the logic to update the game state based on the user's card selection
+  }
+
+  requestAnimationFrame(callback) {
+    return window.requestAnimationFrame(callback);
+  }
+
+  minimizeRedraws() {
+    // Implement the logic to minimize redraws by only updating the parts of the screen that have changed
   }
 }
 
